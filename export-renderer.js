@@ -10,7 +10,7 @@ const val = id => ($(id)?.value || '').trim();
 const visible = el => !!el && getComputedStyle(el).display !== 'none' && !el.classList.contains('hidden');
 const clamp = (n,a=0,b=1) => Math.min(b, Math.max(a,n));
 const easeOutCubic = x => 1 - Math.pow(1 - clamp(x), 3);
-    
+
 function rr(ctx,x,y,w,h,r){
   r=Math.max(0,Math.min(r,Math.min(w,h)/2));
   ctx.beginPath();
@@ -102,7 +102,7 @@ function drawText(
 
   ctx.restore();
 }
-    
+
 const measureCanvas=document.createElement('canvas');
 const measureCtx=measureCanvas.getContext('2d');
 
@@ -144,9 +144,7 @@ function searchState(s,t,final=false){
       88,
       Math.min(
         300,
-        Math.ceil(
-          measureTextWidth(text,14,500)+86
-        )
+        Math.ceil(measureTextWidth(text,14,500)+86)
       )
     )
   };
@@ -175,13 +173,12 @@ function postState(s,t,final=false){
   return full.slice(0,count);
 }
 
-/* =========================================
+/* ================================
    D-DAY
-   무조건 990부터 시작해서 999+까지
-   ========================================= */
+   990 → 1000
+   ================================ */
 
 function ddayState(s,t,final=false){
-
   const sequence=[
     'D+990',
     'D+991',
@@ -193,70 +190,51 @@ function ddayState(s,t,final=false){
     'D+997',
     'D+998',
     'D+999',
-    'D+999+'
+    'D+1000'
   ];
 
-  /* PNG 등 최종 장면 */
   if(final){
     return {
-      text:'D+999+',
+      text:'D+1000',
       phase:1,
       flipping:false
     };
   }
 
   const stepDur=
-    s.controls.ddayFlipSpeed || .13;
-
-  /*
-    디데이 위젯 등장 후
-    약간 기다렸다가 숫자 넘기기 시작
-  */
-  const startTime=
-    s.timeline.ddayStart
-    + .38*(s.duration/5);
+    s.controls.ddayFlipSpeed||.13;
 
   const elapsed=Math.max(
     0,
-    t-startTime
+    t-(
+      s.timeline.ddayStart
+      +.38*(s.duration/5)
+    )
   );
 
   const lastIndex=
     sequence.length-1;
 
-  /*
-    0 = 990
-    1 = 991
-    ...
-    9 = 999
-    10 = 999+
-  */
   const index=Math.min(
     lastIndex,
-    Math.floor(elapsed/stepDur)
+    Math.floor(
+      elapsed/stepDur
+    )
   );
 
-  /*
-    현재 한 번의 숫자 flip이
-    얼마나 진행됐는지 0~1
-  */
   const phase=clamp(
-    (elapsed-index*stepDur)/stepDur
+    (
+      elapsed-index*stepDur
+    )/stepDur
   );
 
   return {
     text:sequence[index],
     phase,
-
-    /*
-      처음 990은 그냥 등장.
-      이후 991부터 999+까지
-      하나씩 flip.
-    */
     flipping:index>0 && phase<1
   };
 }
-    
+
 function drawBackground(ctx,s){
   ctx.fillStyle='#68707c';
   ctx.fillRect(0,0,s.w,s.h);
@@ -557,10 +535,6 @@ function drawSearch(ctx,s,t,final=false){
   ctx.restore();
 }
 
-/* =========================================
-   D-DAY 그리기 + 숫자 넘김 효과
-   ========================================= */
-
 function drawDday(ctx,s,t,final=false){
   const r=s.rects.dday;
 
@@ -618,12 +592,7 @@ function drawDday(ctx,s,t,final=false){
 
   ctx.save();
 
-  /*
-    숫자를 넘길 때
-    세로로 눌렸다가 원래 크기로 돌아오는 효과
-  */
   if(ds.flipping){
-
     const p=
       clamp(ds.phase);
 
@@ -680,11 +649,7 @@ function drawDday(ctx,s,t,final=false){
 
   ctx.restore();
 
-  /*
-    flip 중간의 얇은 가로선
-  */
   if(ds.flipping){
-
     ctx.save();
 
     ctx.globalAlpha=
@@ -711,17 +676,11 @@ function drawDday(ctx,s,t,final=false){
     ctx.restore();
   }
 
-  /*
-    사용자가 선택한 날짜는
-    숫자 계산에는 쓰지 않고
-    아래 작은 날짜 표시에만 사용
-  */
   if(
     s.text.ddayDate &&
     dateRect &&
     dateRect.h
   ){
-
     drawText(
       ctx,
       s.text.ddayDate,
@@ -807,7 +766,6 @@ function drawEqualizer(ctx,x,y,t){
   const gap=2.4;
 
   for(let i=0;i<4;i++){
-
     const wave=
       .5
       +.5
@@ -1155,7 +1113,7 @@ function loadImage(src){
     img.src=src;
   });
 }
-    
+
 async function captureState(opts={}){
   const root=
     $('#capture');
@@ -1229,10 +1187,6 @@ async function captureState(opts={}){
   const ddayEl=
     $('#ddayWidget');
 
-  /*
-    D+990에서 시작해서
-    D+999+까지 넘어가는 데 필요한 시간 계산
-  */
   const ddayStart=
           2.12*f,
 
@@ -1247,12 +1201,11 @@ async function captureState(opts={}){
 
         /*
           990 → 991
-              → 992
               → ...
               → 999
-              → 999+
+              → 1000
 
-          총 10번 숫자가 바뀜
+          총 10번 변경
         */
         ddaySteps=
           10,
@@ -1439,10 +1392,6 @@ async function captureState(opts={}){
           16
         ),
 
-      /*
-        HTML의 숫자 넘김 속도 슬라이더는
-        그대로 사용
-      */
       ddayFlipSpeed:
         num(
           'ddayFlipSpeed',
@@ -1458,11 +1407,8 @@ async function captureState(opts={}){
       ddayLabel:
         txt('#ddayLabelOut'),
 
-      /*
-        최종값은 무조건 D+999+
-      */
       ddayCount:
-        'D+999+',
+        'D+1000',
 
       ddayDate:
         visible(
@@ -1499,7 +1445,7 @@ async function captureState(opts={}){
 
     dday:{
       animate:true,
-      value:999,
+      value:1000,
       prefix:'D+',
 
       bottomPadding:
@@ -1512,7 +1458,7 @@ async function captureState(opts={}){
     }
   };
 }
-    
+
 function motionProgress(s,t,name){
   const f=s.duration/5;
 
@@ -1714,7 +1660,6 @@ function getRenderBuffers(
     scales.get(key);
 
   if(!cached){
-
     const width=
       Math.round(
         state.w*scale
@@ -1907,7 +1852,7 @@ function render(
 }
 
 window.PairExportRenderer={
-  version:'20261007-34',
+  version:'20261007-35',
   captureState,
   render
 };
