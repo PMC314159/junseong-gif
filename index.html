@@ -82,7 +82,7 @@
       </div></details>
 
       <details class="section accordion"><summary class="section-title">D-Day Widget</summary><div class="section-body">
-        <div class="grid2 dday-editor-grid"><div class="field"><label>라벨</label><input id="ddayLabel" type="text" value="OUR DAY"></div><div class="field"><label>기념일 날짜</label><input id="ddayDate" type="date"></div></div>
+        <div class="grid2 dday-editor-grid"><div class="field"><label>라벨</label><input id="ddayLabel" type="text" value="OUR DAY"></div><div class="field"><label>기념일 날짜</label><input id="ddayDate" type="text" value="" placeholder="예: 2024.01.01"></div></div>
         <div class="field"><label>숫자 넘김 속도</label><div class="range-row"><input id="ddayFlipSpeed" type="range" min="0.06" max="0.40" step="0.01" value="0.13"><span class="value" id="ddayFlipSpeedV">0.13s</span></div></div>
         <div class="field"><label>날짜와 관계없이 D+990부터 시작해 D+999를 거쳐 D+1000까지 넘겨요 · 날짜 입력은 아래 작은 날짜 표시에만 사용돼요</label></div>
         <div class="subhead">위젯 위치</div>
@@ -120,9 +120,9 @@
       <details class="section accordion"><summary class="section-title">Credit</summary><div class="section-body">
         <div class="field"><label>왼쪽 아래 커미션주</label><input id="commissionText" type="text" maxlength="80" value="" placeholder="예: commission by @name"></div>
       </div></details>
-      <details class="section accordion"><summary class="section-title">Glass & Motion</summary><div class="section-body"><div class="field"><label>위젯 투명도</label><div class="range-row"><input id="glassOpacity" type="range" min="10" max="70" value="34"><span class="value" id="glassV">34%</span></div></div><div class="field"><label>등장 효과</label><select id="animEffect"><option value="pop" selected>팝업 · 살짝 튀어나오기</option><option value="fade">페이드 · 부드럽게 나타나기</option><option value="slide">슬라이드 · 아래에서 위로</option><option value="snap">즉시 · 딱 나타나기</option></select></div><div class="field"><label>전체 애니메이션 길이</label><div class="range-row"><input id="duration" type="range" min="3.5" max="8" step="0.5" value="5"><span class="value" id="durationV">5.0s</span></div></div><div class="field"><label>FPS</label><select id="fps"><option value="8">8 fps · 가볍게</option><option value="10">10 fps · 보통</option><option value="12">12 fps · 부드럽게</option><option value="15" selected>15 fps · 추천</option></select></div><div class="field"><label>GIF 저장 크기</label><select id="gifScale"><option value="1">기본 · 1.00×</option><option value="1.15">조금 크게 · 1.15×</option><option value="1.25" selected>크게 · 1.25×</option><option value="1.35">아주 크게 · 1.35×</option></select></div></div></details>
+      <details class="section accordion"><summary class="section-title">Glass & Motion</summary><div class="section-body"><div class="field"><label>위젯 투명도</label><div class="range-row"><input id="glassOpacity" type="range" min="10" max="70" value="34"><span class="value" id="glassV">34%</span></div></div><div class="field"><label>등장 효과</label><select id="animEffect"><option value="pop" selected>팝업 · 살짝 튀어나오기</option><option value="fade">페이드 · 부드럽게 나타나기</option><option value="slide">슬라이드 · 아래에서 위로</option><option value="snap">즉시 · 딱 나타나기</option></select></div><div class="field"><label>전체 애니메이션 길이</label><div class="range-row"><input id="duration" type="range" min="3.5" max="8" step="0.5" value="5"><span class="value" id="durationV">5.0s</span></div></div><div class="field"><label>FPS</label><select id="fps"><option value="8">8 fps · 가볍게</option><option value="10">10 fps · 보통</option><option value="12">12 fps · 부드럽게</option><option value="15" selected>15 fps · 추천</option></select></div><div class="field"><label>GIF 저장 크기</label><select id="gifScale"><option value="1">기본 · 1.00×</option><option value="1.25">크게 · 1.25×</option><option value="1.5" selected>고화질 · 1.50×</option><option value="2">초고화질 · 2.00×</option></select></div></div></details>
       <div class="use-notice"><strong>사용 제한</strong>『가비지타임』 성준수 드림과 『괴담에 떨어져도 출근을 해야 하는구나』 이자헌 드림에는 사용 불가능합니다.<br>『귀멸의 칼날』과 『나의 히어로 아카데미아』 장르에는 사용 불가능합니다.</div>
-      <section class="section"><div class="btns"><button class="ghost" id="replay">↻ 다시 재생</button><button class="ghost" id="savePng">이미지 저장</button><button class="primary" id="saveMp4X">MP4 저장 · 추천</button><button class="ghost" id="saveGif">GIF 저장 · 보조</button></div><div class="status" id="status">영상 저장에는 MP4를 추천합니다. GIF 저장은 GIF가 꼭 필요할 때 사용해 주세요.</div><div class="mobile-save-note" id="mobileSaveNote"></div><div class="ios-save-ready" id="iosSaveReady"><div class="ios-save-title" id="iosSaveTitle">저장 파일이 준비됐어요.</div><div class="ios-save-desc" id="iosSaveDesc">아래 버튼을 누른 뒤 저장을 선택해 주세요.</div><button type="button" id="iosSaveAction">iPhone에 저장</button></div></section>
+      <section class="section"><div class="btns"><button class="ghost" id="replay">↻ 다시 재생</button><button class="ghost" id="savePng">이미지 저장</button><button class="primary" id="saveMp4X">MP4 저장 · 추천</button><button class="ghost" id="saveGif">GIF 저장 · 보조</button></div><div class="status" id="status">고화질 저장: PNG 3× · MP4 2× / 30fps / 16Mbps. GIF는 파일 용량이 크게 늘 수 있어요.</div><div class="mobile-save-note" id="mobileSaveNote"></div><div class="ios-save-ready" id="iosSaveReady"><div class="ios-save-title" id="iosSaveTitle">저장 파일이 준비됐어요.</div><div class="ios-save-desc" id="iosSaveDesc">아래 버튼을 누른 뒤 저장을 선택해 주세요.</div><button type="button" id="iosSaveAction">iPhone에 저장</button></div></section>
     </aside>
     <section class="stage-wrap"><div class="preview-shell" id="shell"><div id="capture"><div class="bg-layer" id="bgLayer"></div><div class="bg-overlay"></div><div class="noise"></div><div class="scene-content" id="sceneContent"><div class="phone" id="phone"><div class="screen"><img id="mainImage" alt=""><div class="screen-shade"></div></div></div><div class="glass search-widget anim-item" id="searchWidget"><div class="search-text" id="searchTextOut">With suggestions<span class="typing-caret"></span></div><div class="search-icon-wrap"><div class="search-icon"></div></div></div><div class="glass dday anim-item" id="ddayWidget"><div class="label" id="ddayLabelOut">OUR DAY</div><div class="count" id="ddayCount">D+1000</div><div class="date hidden" id="ddayDateOut"></div></div><div class="glass music anim-item" id="musicWidget"><div class="cover"><img id="coverImage" alt=""></div><div class="track"><div class="song" id="songOut">Midnight Hour</div><div class="artist" id="artistOut">Pair Theme</div><div class="timeline"><div class="bar"><i id="barFill"></i></div><div class="eq" aria-hidden="true"><span></span><span></span><span></span><span></span></div><div class="play" aria-label="일시정지"></div></div><div class="time-row"><span id="currentTimeOut">01:31</span><span id="durationTimeOut">03:36</span></div></div><div class="playlist hidden" id="playlistOut"><div class="queue-item hidden" id="queueItem1"><div class="queue-meta"><div class="queue-title" id="queueTitleOut1"></div><div class="queue-artist" id="queueArtistOut1"></div></div><div class="queue-index">02</div></div><div class="queue-item hidden" id="queueItem2"><div class="queue-meta"><div class="queue-title" id="queueTitleOut2"></div><div class="queue-artist" id="queueArtistOut2"></div></div><div class="queue-index">03</div></div><div class="queue-item hidden" id="queueItem3"><div class="queue-meta"><div class="queue-title" id="queueTitleOut3"></div><div class="queue-artist" id="queueArtistOut3"></div></div><div class="queue-index">04</div></div></div></div><div class="post-card anim-item" id="postWidget"><div class="post-inner"><div class="post-image"><img id="postImage" alt=""></div><div class="post-title" id="postCaptionOut">midnight post</div></div></div></div><div class="commission-credit hidden" id="commissionCredit"></div></div></div></section>
   </main>
@@ -166,7 +166,7 @@
     // 디데이는 항상 D+990 → ... → D+999 → D+1000 순서로 재생됩니다.
     const finalText='D+1000';
 
-    const displayDate=dateStr ? dateStr.replaceAll('-','.') : '';
+    const displayDate=(dateStr||'').trim();
     if(dateOut){
       dateOut.textContent=displayDate;
       dateOut.classList.toggle('hidden',!displayDate);
@@ -660,7 +660,7 @@
     return 'downloaded';
   }
   const sleep=ms=>new Promise(r=>setTimeout(r,Math.max(0,ms)));
-  async function encodeXMp4(state,{endTime,totalTime,fps=30,scale=2,bitrate=8000000}){
+  async function encodeXMp4(state,{endTime,totalTime,fps=30,scale=2,bitrate=16000000}){
     const mimeType=pickMp4Mime();
     if(!mimeType)throw new Error('이 브라우저는 MP4 직접 저장을 지원하지 않아요. 최신 Chrome 또는 Safari에서 다시 시도해 주세요.');
 
@@ -680,7 +680,7 @@
 
     // 최종 MP4 크기는 2×로 유지하되,
     // 움직이는 프레임은 조금 가볍게 렌더링해 30fps 누락을 줄여요.
-    const renderScale=Math.min(scale,1.5);
+    const renderScale=scale;
 
     const drawFrame=t=>{
       const frame=window.PairExportRenderer.render(
@@ -1215,7 +1215,7 @@
     const btn=$('#savePng');btn.disabled=true;exportMode=true;if(liveRaf)cancelAnimationFrame(liveRaf);let prep=null;
     try{
       status.textContent='최종 장면 이미지 준비 중…';prep=await prepareCanvasExport();
-      const canvas=window.PairExportRenderer.render(prep.state,prep.state.duration+1,{final:true});
+      const canvas=window.PairExportRenderer.render(prep.state,prep.state.duration+1,{final:true,scale:3});
 
       if(isIOSDevice()){
         const pngBlob=await new Promise((resolve,reject)=>{
@@ -1273,7 +1273,7 @@
       prep=await prepareCanvasExport();
       const state=prep.state,endTime=getAnimationEndTime(),totalTime=endTime+FINAL_HOLD;
       status.textContent='MP4 준비 중…';
-      const result=await encodeXMp4(state,{endTime,totalTime,fps:30,scale:2,bitrate:8000000});
+      const result=await encodeXMp4(state,{endTime,totalTime,fps:30,scale:2,bitrate:16000000});
       const mb=(result.blob.size/1024/1024).toFixed(1);
 
       if(isIOSDevice()){
